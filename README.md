@@ -1,6 +1,6 @@
 # Backbinder.js
 
-A small [Backbone](http://backbonejs.org) extension that provides a collection of helper methods and binds components together 
+A small [Backbone](http://backbonejs.org) extension framework that provides a collection of helper methods and binds components together 
 to make for a leaner, more streamlined workflow when working with Backbone apps.
 
 
