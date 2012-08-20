@@ -21,6 +21,7 @@ var Person = Backbone.EnhancedModel.extend({
 var larry = new Person({name: "Larry"});
 var curly = new Person({name: "Curly"});
 var moe = new Person({name: "Moe"});
+
 Person.all // Backbone.Collection([larry, curly, moe])
 ```
 
@@ -30,8 +31,10 @@ Person.all // Backbone.Collection([larry, curly, moe])
 var Album = Backbone.EnhancedModel.extend();
 var MetalAlbum = Album.extend({ type: "metal album", defaults: { genre: "metal" } });
 var ExperimentalAlbum = Album.extend({ type: "experimental album",  defaults: ( genre: "experimental" ) });
+
 var masterOfPuppets = new MetalAlbum({ artist: "metallica" });
 var populationOverride = new ExperimentalAlbum({ artist: "buckethead" });
+
 Album.all; // Backbone.Collection([masterOfPuppets, populationOverride])
 Album.all.excludingChildren(); // Backbone.Collection([])
 Album.all.excludingChildren(MetalAlbum) // Backbone.Collection([populationOverride])
@@ -54,6 +57,7 @@ var Hippo = Backbone.EnhancedModel.extend({
         hungry: true
     }
 });
+
 var purple_hippo = new Hippo({color: "purple", hungry: false});
 purple_hippo.defaults // {hungry: true}
 ```
@@ -62,9 +66,11 @@ purple_hippo.defaults // {hungry: true}
 
 ```javascript
 var porridge = new Porridge();
+
 porridge.setIf("good", true, function () {
     return !porridge.isTooCold() && !porridge.isTooHot();
 });
+
 porridge.setIfUndefined("eatenBy", "Goldilocks");
 ```
 
@@ -109,6 +115,7 @@ $(function () {
 <!-- Will be rendered -->
 <div data-view="band" data-model="megadeth" id="megadeth"></div>
 <div data-view="band" data-model="satriani" class="instrumental"></div>
+
 <!-- Will not be rendered -->
 <div data-view="band" data-model="coldplay"></div>
 ```
@@ -117,11 +124,13 @@ $(function () {
 
 ```javascript
 var Album = Backbone.EnhancedModel.extend({ type: "album" });
+
 var powerslave = new Album({
     artist: "Iron Maiden",
     title: "Powerslave",
     trackListing: [ ... ]
 });
+
 var AlbumView = Backbone.EnhancedView.extend({
     model: Album,
     instanceFilterKey: "title",
@@ -176,7 +185,9 @@ Options when defining a new view:
 
 ```javascript
 var Book = Backbone.Namespace();
+
 Book.Model.create({ type: "book" });
+
 Book.View.create(
     // no need to define the 'model' property!
     render: function () { ... }
@@ -198,7 +209,9 @@ of the original objects being merged
 ```javascript
 var peanutButter = { style: "chunky", brand: "pb" };
 var jelly = { flavor: "grape", brand: "jellytime" };
+
 var pbAndJ = _.merge(peanutButter, jelly); // {style: "chunky", flavor: "grape", brand: "pb" };
+
 pbAndJ == _.merge(peanutButter, jelly, {
     exceptFor: function (property) {
         return property === "brand";
